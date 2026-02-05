@@ -1,0 +1,149 @@
+.employees-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px;
+
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 32px;
+}
+
+.present-count {
+  grid-column: 1 / -1;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.present-count h2 {
+  color: #22c55e;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+/* LIST CARD */
+.employees-list {
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.employees-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+/* LIST */
+.employees-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* EMPLOYEE CARD */
+.employee-card {
+  background: #f7f7ff;
+  border: 1px solid #e0e7ff;
+  padding: 16px;
+  border-radius: 14px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.employee-name {
+  font-weight: 600;
+  color: #111827;
+}
+
+.employee-meta {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* ACTIONS */
+.employee-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.view-btn {
+  background: #eef2ff;
+  color: #4f46e5;
+  padding: 6px 12px;
+  border-radius: 10px;
+  border: 1px solid #c7d2fe;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.view-btn:hover {
+  background: #e0e7ff;
+}
+
+.delete-btn {
+  background: #fff1f2;
+  color: #ef4444;
+  border: 1px solid #fecdd3;
+  padding: 6px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .employees-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Modal box */
+.modal-content {
+  background: #ffffff;
+  width: 90%;
+  max-width: 900px;
+  border-radius: 12px;
+  padding: 20px;
+  position: relative;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  animation: slideDown 0.25s ease;
+}
+
+/* Close button */
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: #374151;
+}
+
+.modal-close:hover {
+  color: #ef4444;
+}
