@@ -22,7 +22,6 @@ export default function Attendance({ closeModal }) {
     await api.post("/attendance/", form);
     setMessage("Attendance marked successfully ✅");
 
-    // Close modal after success
     setTimeout(() => closeModal(), 1500);
   };
 

@@ -83,7 +83,7 @@ export default function EmployeeForm({ refresh }) {
         </button>
       </form>
 
-      {/* Hot toast container */}
+     
       <Toaster position="top-right" reverseOrder={false} />
     </>
   );

@@ -39,7 +39,7 @@ export default function AttendanceCalendar({ employee }) {
         height="auto"
         displayEventTime={false}
         headerToolbar={{
-    right: "prev,next", // remove 'today' from here
+    right: "prev,next",
     center: "title",
     left: "dayGridMonth",
   }}
