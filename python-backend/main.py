@@ -3,7 +3,7 @@ from database import Base, engine
 from routes import employee, attendance
 from fastapi.middleware.cors import CORSMiddleware
 
-app = FastAPI(title="HRMS Lite API")
+app = FastAPI(title="HRMS API")
 
 app.add_middleware(
     CORSMiddleware,
@@ -20,4 +20,4 @@ app.include_router(attendance.router)
 
 @app.get("/")
 def home():
-    return {"message": "HRMS Lite Backend Running"}
+    return {"message": "HRMS Backend Running"}
