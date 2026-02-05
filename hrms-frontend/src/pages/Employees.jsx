@@ -5,7 +5,6 @@ import AttendanceCalendar from "../components/AttendanceCalnder";
 import "./Employees.css";
 import { Users } from "lucide-react";
 
-
 export default function Employees() {
   const [employees, setEmployees] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -44,42 +43,47 @@ export default function Employees() {
       <EmployeeForm refresh={fetchEmployees} />
 
       <div className="employees-list">
-        <h2 className="employees-title">Employee List <Users size={20} style={{ marginRight: "8px", color: "#4f46e5" }} /></h2>
+        <h2 className="employees-title">
+          Employee List{" "}
+          <Users size={20} style={{ marginRight: "8px", color: "#4f46e5" }} />
+        </h2>
 
-        {loading && <p>Loading...</p>}
-
-        {!loading && employees.length === 0 && (
+        {loading ? (
+          <div className="spinner-wrapper">
+            <div className="spinner"></div>
+          </div>
+        ) : employees.length === 0 ? (
           <p>No employees added yet.</p>
+        ) : (
+          <ul className="employees-items">
+            {employees.map((emp) => (
+              <li key={emp.id} className="employee-card">
+                <div>
+                  <p className="employee-name">{emp.full_name}</p>
+                  <p className="employee-meta">
+                    {emp.department} • {emp.email}
+                  </p>
+                </div>
+
+                <div className="employee-actions">
+                  <button
+                    className="view-btn"
+                    onClick={() => setSelectedEmployee(emp)}
+                  >
+                    View Attendance
+                  </button>
+
+                  <button
+                    className="delete-btn"
+                    onClick={() => deleteEmployee(emp.id)}
+                  >
+                    Delete
+                  </button>
+                </div>
+              </li>
+            ))}
+          </ul>
         )}
-
-        <ul className="employees-items">
-          {employees.map((emp) => (
-            <li key={emp.id} className="employee-card">
-              <div>
-                <p className="employee-name">{emp.full_name}</p>
-                <p className="employee-meta">
-                  {emp.department} • {emp.email}
-                </p>
-              </div>
-
-              <div className="employee-actions">
-                <button
-                  className="view-btn"
-                  onClick={() => setSelectedEmployee(emp)}
-                >
-                  View Attendance
-                </button>
-
-                <button
-                  className="delete-btn"
-                  onClick={() => deleteEmployee(emp.id)}
-                >
-                  Delete
-                </button>
-              </div>
-            </li>
-          ))}
-        </ul>
       </div>
 
       {selectedEmployee && (

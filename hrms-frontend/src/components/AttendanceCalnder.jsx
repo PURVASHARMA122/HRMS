@@ -9,7 +9,7 @@ export default function AttendanceCalendar({ employee }) {
   useEffect(() => {
     if (!employee) return;
 
-    api.get(`/employee/${employee.id}`).then((res) => {
+    api.get(`/attendance/employee/${employee.id}`).then((res) => {
       const calendarEvents = res.data.map((a) => ({
         title: a.status,
         date: a.date,
