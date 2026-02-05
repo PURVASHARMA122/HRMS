@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { api } from "../api";
+import toast, { Toaster } from "react-hot-toast";
 import "./AttendanceForm.css";
 
 export default function Attendance({ closeModal }) {
@@ -9,7 +10,6 @@ export default function Attendance({ closeModal }) {
     date: "",
     status: "Present",
   });
-  const [message, setMessage] = useState("");
 
   useEffect(() => {
     api.get("/employees/").then((res) => setEmployees(res.data));
@@ -17,20 +17,29 @@ export default function Attendance({ closeModal }) {
 
   const submitAttendance = async (e) => {
     e.preventDefault();
-    setMessage("");
 
-    await api.post("/attendance/", form);
-    setMessage("Attendance marked successfully ✅");
+    try {
+      await api.post("/attendance/", form);
 
-    setTimeout(() => closeModal(), 1500);
+      toast.success("Attendance Marked Successfully", {
+        duration: 1500,
+        position: "top-right",
+      });
+
+      setTimeout(() => closeModal(), 1500);
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to mark attendance ❌", {
+        duration: 2000,
+        position: "top-right",
+      });
+    }
   };
 
   return (
     <div className="attendance-container">
       <form onSubmit={submitAttendance} className="attendance-form">
         <h2 className="attendance-title">Mark Attendance</h2>
-
-        {message && <p className="attendance-message">{message}</p>}
 
         <select
           className="attendance-input"
@@ -52,18 +61,14 @@ export default function Attendance({ closeModal }) {
           type="date"
           className="attendance-input"
           value={form.date}
-          onChange={(e) =>
-            setForm({ ...form, date: e.target.value })
-          }
+          onChange={(e) => setForm({ ...form, date: e.target.value })}
           required
         />
 
         <select
           className="attendance-input"
           value={form.status}
-          onChange={(e) =>
-            setForm({ ...form, status: e.target.value })
-          }
+          onChange={(e) => setForm({ ...form, status: e.target.value })}
         >
           <option>Present</option>
           <option>Absent</option>
@@ -71,6 +76,8 @@ export default function Attendance({ closeModal }) {
 
         <button className="attendance-btn">Submit Attendance</button>
       </form>
+
+     <Toaster />
     </div>
   );
 }

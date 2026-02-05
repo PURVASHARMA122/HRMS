@@ -53,7 +53,14 @@ export default function Employees() {
             <div className="spinner"></div>
           </div>
         ) : employees.length === 0 ? (
-          <p>No employees added yet.</p>
+          <div className="no-employees">
+            <Users
+              size={48}
+              style={{ color: "#a1a1aa", marginBottom: "10px" }}
+            />
+            <p style={{ color: "#a1a1aa", marginBottom: "10px" }}>No employees added yet.</p>
+            
+          </div>
         ) : (
           <ul className="employees-items">
             {employees.map((emp) => (
